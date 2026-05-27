@@ -507,6 +507,162 @@ options:[
 ],
 answer:0,
 explanation:"Las luces altas empeoran la visibilidad."
+},
+{
+question:"¿Qué significa una luz amarilla intermitente?",
+options:[
+"Detenerse totalmente",
+"Precaución",
+"Paso libre"
+],
+answer:1,
+explanation:"La luz amarilla intermitente indica circular con precaución."
+},
+
+{
+question:"¿Está permitido usar teléfono celular al conducir?",
+options:[
+"Sí, con una mano",
+"No",
+"Solo en semáforos"
+],
+answer:1,
+important:true,
+explanation:"El uso del celular distrae y está prohibido."
+},
+
+{
+question:"¿Qué debe hacer antes de retroceder?",
+options:[
+"Acelerar",
+"Tocar bocina",
+"Asegurarse de que no haya peligro"
+],
+answer:2,
+explanation:"Debe verificar que la maniobra sea segura."
+},
+
+{
+question:"¿Cuál es la velocidad máxima en avenidas urbanas?",
+options:[
+"40 km/h",
+"60 km/h",
+"80 km/h"
+],
+answer:1,
+explanation:"La velocidad máxima general en avenidas es 60 km/h."
+},
+
+{
+question:"¿Qué indica una señal octogonal roja?",
+options:[
+"Ceda el paso",
+"Pare",
+"Contramano"
+],
+answer:1,
+important:true,
+explanation:"La señal octogonal roja corresponde a PARE."
+},
+
+{
+question:"¿Qué debe hacer si un peatón cruza inesperadamente?",
+options:[
+"Acelerar",
+"Ceder el paso y frenar",
+"Tocar bocina y seguir"
+],
+answer:1,
+explanation:"Debe priorizar la seguridad del peatón."
+},
+
+{
+question:"¿Cuál es la distancia mínima recomendable respecto del vehículo delantero?",
+options:[
+"1 segundo",
+"2 segundos",
+"10 metros"
+],
+answer:1,
+explanation:"Se recomienda mantener al menos 2 segundos."
+},
+
+{
+question:"¿Qué significa una señal circular con borde rojo?",
+options:[
+"Información",
+"Prohibición",
+"Advertencia"
+],
+answer:1,
+explanation:"Las señales circulares rojas indican prohibición."
+},
+
+{
+question:"¿Cuándo deben usarse las balizas?",
+options:[
+"En emergencias o detenciones peligrosas",
+"Siempre",
+"Solo de noche"
+],
+answer:0,
+explanation:"Las balizas advierten una situación especial."
+},
+
+{
+question:"¿Qué debe hacer en un cruce sin semáforo?",
+options:[
+"Acelerar",
+"Ceder prioridad según normas",
+"Tocar bocina"
+],
+answer:1,
+explanation:"Debe respetarse la prioridad de paso."
+},
+
+{
+question:"¿Qué color tienen las luces de giro traseras?",
+options:[
+"Blancas",
+"Rojas",
+"Amarillas"
+],
+answer:2,
+explanation:"Las luces de giro son amarillas o ámbar."
+},
+
+{
+question:"¿Qué debe hacer si un vehículo lo sobrepasa?",
+options:[
+"Aumentar velocidad",
+"Mantener velocidad y facilitar maniobra",
+"Encerrarlo"
+],
+answer:1,
+explanation:"Debe facilitar el adelantamiento seguro."
+},
+
+{
+question:"¿Cuál es la función del cinturón de seguridad?",
+options:[
+"Mayor comodidad",
+"Evitar lesiones en accidentes",
+"Reducir consumo"
+],
+answer:1,
+important:true,
+explanation:"El cinturón salva vidas y es obligatorio."
+},
+
+{
+question:"¿Qué debe hacer al aproximarse a una escuela?",
+options:[
+"Aumentar velocidad",
+"Reducir velocidad y extremar precaución",
+"Tocar bocina"
+],
+answer:1,
+explanation:"Debe protegerse especialmente a los peatones."
 }
 
 ];
@@ -534,7 +690,7 @@ function loadQuestion(){
     optionsEl.innerHTML = "";
 
     questionNumberEl.innerText =
-        `${currentQuestion+1}/${questions.length}`;
+        `${currentQuestion+1}/40`;
 
     progressBar.style.width =
         `${(currentQuestion/questions.length)*100}%`;
@@ -617,9 +773,9 @@ function finishExam(){
         "block";
 
     document.getElementById("final-score").innerText =
-        `${score} / ${questions.length}`;
+        `${score} / 40`;
 
-    let porcentaje = (score/questions.length)*100;
+    let porcentaje = (score/40)*100;
 
     if(porcentaje >= 70){
 
