@@ -534,7 +534,7 @@ function loadQuestion(){
     optionsEl.innerHTML = "";
 
     questionNumberEl.innerText =
-        `${currentQuestion+1}/40`;
+        `${currentQuestion+1}/${questions.length}`;
 
     progressBar.style.width =
         `${(currentQuestion/questions.length)*100}%`;
@@ -617,9 +617,9 @@ function finishExam(){
         "block";
 
     document.getElementById("final-score").innerText =
-        `${score} / 40`;
+        `${score} / ${questions.length}`;
 
-    let porcentaje = (score/40)*100;
+    let porcentaje = (score/questions.length)*100;
 
     if(porcentaje >= 70){
 
