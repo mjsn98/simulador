@@ -214,19 +214,129 @@ button:hover{
 const questions = [
 
 {
-question:"¿Qué debe hacer un conductor al aproximarse a una senda peatonal?",
+question:"¿Qué documentación es obligatoria para circular?",
 options:[
-"Disminuir la velocidad y ceder el paso",
-"Acelerar para pasar primero",
-"Tocar bocina para advertir"
+"Tarjeta verde, DNI y título",
+"Título del automotor y grupo sanguíneo",
+"Cédula de identificación, patente paga, licencia y seguro vigente"
 ],
-answer:0
+answer:2,
+important:true,
+explanation:"Siempre debe portar licencia, cédula, patente y seguro vigente."
 },
 
 {
-question:"¿Cuál es la velocidad máxima permitida en calles urbanas?",
-options:["40 km/h","60 km/h","80 km/h"],
-answer:0
+question:"El seguro contra terceros es:",
+options:[
+"Opcional",
+"Obligatorio sin excepción",
+"Solo obligatorio en rutas"
+],
+answer:1,
+important:true,
+explanation:"El seguro obligatorio es indispensable para circular."
+},
+
+{
+question:"En una autopista ¿qué carril se utiliza para la velocidad máxima?",
+options:[
+"Derecha",
+"Izquierda",
+"Cualquier carril"
+],
+answer:1,
+explanation:"El carril izquierdo se usa para sobrepaso y máxima velocidad permitida."
+},
+
+{
+question:"¿Qué espacio debe dejarse adelante y atrás de vehículos estacionados?",
+options:[
+"10 cm",
+"50 cm",
+"1 metro"
+],
+answer:1,
+explanation:"La distancia reglamentaria mínima es 50 cm."
+},
+
+{
+question:"Si revienta un neumático mientras conduce:",
+options:[
+"Frenar bruscamente",
+"Sujetar firme el volante y disminuir velocidad",
+"Girar rápidamente"
+],
+answer:1,
+important:true,
+explanation:"Nunca debe frenarse bruscamente."
+},
+
+{
+question:"¿Cómo se estaciona en una calle con pendiente?",
+options:[
+"Solo con freno de mano",
+"Con ruedas rectas",
+"Con freno de mano y ruedas hacia el cordón"
+],
+answer:2,
+explanation:"Debe asegurarse el vehículo para evitar desplazamiento."
+},
+
+{
+question:"¿Qué vehículo tiene prioridad en caminos de montaña?",
+options:[
+"El que asciende",
+"El que desciende",
+"Cualquiera"
+],
+answer:0,
+explanation:"El vehículo que asciende tiene prioridad."
+},
+
+{
+question:"¿Cómo deben viajar niños menores de 10 años?",
+options:[
+"En brazos",
+"En asiento delantero",
+"En sistema de retención infantil atrás"
+],
+answer:2,
+important:true,
+explanation:"Los menores deben viajar correctamente sujetos."
+},
+
+{
+question:"¿Puede circular un vehículo sin paragolpes?",
+options:[
+"Sí",
+"No",
+"Solo en ciudad"
+],
+answer:1,
+explanation:"Es un elemento de seguridad obligatorio."
+},
+
+{
+question:"¿Dónde debe detenerse en un semáforo?",
+options:[
+"Sobre la senda peatonal",
+"Detrás de la senda peatonal",
+"En cualquier lugar"
+],
+answer:1,
+explanation:"Nunca debe invadir la senda peatonal."
+},
+
+{
+question:"¿Quién tiene prioridad en una rotonda?",
+options:[
+"El que ingresa",
+"El que circula",
+"El más rápido"
+],
+answer:1,
+important:true,
+explanation:"Siempre tiene prioridad quien ya circula."
 },
 
 {
@@ -234,209 +344,158 @@ question:"¿Qué indica una doble línea amarilla continua?",
 options:[
 "Se puede adelantar",
 "Está prohibido adelantar",
-"Carril exclusivo"
+"Carril rápido"
 ],
-answer:1
+answer:1,
+explanation:"Está prohibido sobrepasar."
 },
 
 {
-question:"¿Qué debe hacer si el semáforo cambia a amarillo?",
+question:"¿Qué debe hacer si lo encandilan con luces altas?",
 options:[
-"Acelerar",
-"Detenerse si puede hacerlo con seguridad",
-"Ignorarlo"
+"Mirar las luces",
+"Encender luces altas",
+"Mirar hacia la derecha y mantener luces bajas"
 ],
-answer:1
+answer:2,
+explanation:"Así evita perder visión momentáneamente."
 },
 
 {
-question:"¿Quién tiene prioridad en una rotonda?",
+question:"¿Dónde está permitido usar luces altas?",
 options:[
-"El que ingresa",
-"El que circula dentro",
-"El vehículo más grande"
+"Zona urbana",
+"Zona rural",
+"En cualquier lugar"
 ],
-answer:1
+answer:1,
+explanation:"Las luces altas se utilizan fuera de zonas urbanas."
 },
 
 {
-question:"¿Está permitido usar el celular mientras conduce?",
+question:"¿Cuál es la velocidad máxima en calles urbanas?",
 options:[
-"Sí, con una mano",
-"No",
-"Solo en avenidas"
+"20 km/h",
+"40 km/h",
+"60 km/h"
 ],
-answer:1
+answer:1,
+important:true,
+explanation:"La velocidad máxima urbana general es 40 km/h."
 },
 
 {
-question:"¿Qué luces son obligatorias en rutas nacionales?",
+question:"Si un policía indica avanzar con semáforo rojo:",
 options:[
-"Luces bajas",
-"Luces altas",
-"Balizas"
-],
-answer:0
-},
-
-{
-question:"¿Cuál es el límite de alcohol permitido para particulares?",
-options:[
-"0,5 g/l",
-"1 g/l",
-"2 g/l"
-],
-answer:0
-},
-
-{
-question:"¿Qué documento es obligatorio portar?",
-options:[
-"Licencia de conducir",
-"Factura del seguro",
-"Recibo de sueldo"
-],
-answer:0
-},
-
-{
-question:"¿Qué significa una señal octogonal roja?",
-options:[
-"Ceda el paso",
-"Pare",
-"Prohibido estacionar"
-],
-answer:1
-},
-
-{
-question:"¿Qué debe hacer al escuchar una sirena de emergencia?",
-options:[
-"Acelerar",
-"Ceder el paso",
-"Detenerse en medio"
-],
-answer:1
-},
-
-{
-question:"¿Cuál es la distancia mínima recomendada entre vehículos?",
-options:[
-"La que permita frenar con seguridad",
-"1 metro",
-"No importa"
-],
-answer:0
-},
-
-{
-question:"¿Qué indica una línea blanca discontinua?",
-options:[
-"Prohibido adelantar",
-"Se puede cambiar de carril",
-"Zona escolar"
-],
-answer:1
-},
-
-{
-question:"¿Qué hacer ante lluvia intensa?",
-options:[
-"Aumentar velocidad",
-"Reducir velocidad",
-"Apagar luces"
-],
-answer:1
-},
-
-{
-question:"¿Quién debe usar cinturón?",
-options:[
-"Solo conductor",
-"Todos los ocupantes",
-"Solo acompañante"
-],
-answer:1
-},
-
-{
-question:"¿Qué hacer ante fatiga al conducir?",
-options:[
-"Continuar",
-"Descansar",
-"Tomar café solamente"
-],
-answer:1
-},
-
-{
-question:"¿Qué significa una luz verde?",
-options:[
-"Avanzar con precaución",
-"Detenerse",
-"Girar obligatorio"
-],
-answer:0
-},
-
-{
-question:"¿Qué hacer si un peatón cruza fuera de senda?",
-options:[
-"No frenar",
-"Ceder igualmente",
+"Esperar verde",
+"Obedecer al policía",
 "Tocar bocina"
 ],
-answer:1
-},
-
-{
-question:"¿Qué debe verificarse antes de salir?",
-options:[
-"Luces y frenos",
-"Solo combustible",
-"Radio"
-],
-answer:0
-},
-
-{
-question:"¿Qué hacer en un paso a nivel sin barrera?",
-options:[
-"Cruzar rápido",
-"Detenerse y observar",
-"Tocar bocina"
-],
-answer:1
+answer:1,
+important:true,
+explanation:"Las indicaciones del agente prevalecen."
 },
 
 {
 question:"¿Qué indica una señal triangular?",
 options:[
-"Peligro o advertencia",
+"Advertencia",
 "Obligación",
-"Información turística"
+"Información"
 ],
-answer:0
+answer:0,
+explanation:"Las triangulares indican peligro o prevención."
 },
 
 {
-question:"¿Está permitido adelantarse en curvas?",
+question:"¿Qué significa cordón rojo?",
 options:[
-"Sí",
-"No",
-"Solo motos"
+"Permitido estacionar",
+"Prohibido estacionar y detenerse",
+"Carga y descarga"
 ],
-answer:1
+answer:1,
+explanation:"El cordón rojo prohíbe detenerse."
 },
 
 {
-question:"¿Qué debe hacer si pincha un neumático?",
+question:"Ante lluvia intensa debe:",
 options:[
-"Frenar bruscamente",
-"Sostener firme el volante y reducir velocidad",
-"Girar violentamente"
+"Aumentar velocidad",
+"Reducir velocidad",
+"Apagar luces"
 ],
-answer:1
+answer:1,
+explanation:"La lluvia reduce adherencia y visibilidad."
+},
+
+{
+question:"¿Cuál es la recomendación sobre alcohol y conducción?",
+options:[
+"Tomar café antes de manejar",
+"Alcohol cero",
+"Conducir despacio"
+],
+answer:1,
+important:true,
+explanation:"El alcohol afecta reflejos y percepción."
+},
+
+{
+question:"¿Qué debe hacer antes de cambiar de carril?",
+options:[
+"Señalizar",
+"Frenar",
+"Acelerar"
+],
+answer:0,
+explanation:"Siempre debe señalizar previamente."
+},
+
+{
+question:"¿Qué debe hacer al acercarse a una senda peatonal?",
+options:[
+"Acelerar",
+"Ceder el paso",
+"Tocar bocina"
+],
+answer:1,
+important:true,
+explanation:"Los peatones tienen prioridad."
+},
+
+{
+question:"¿Qué significa una línea blanca discontinua?",
+options:[
+"Puede cambiar de carril",
+"Prohibido adelantar",
+"Carril exclusivo"
+],
+answer:0,
+explanation:"La línea discontinua permite adelantamiento."
+},
+
+{
+question:"¿Qué debe hacer si escucha una sirena?",
+options:[
+"Acelerar",
+"Ceder el paso",
+"Detenerse en medio"
+],
+answer:1,
+important:true,
+explanation:"Debe facilitar el paso a emergencias."
+},
+
+{
+question:"¿Qué debe hacer ante fatiga al conducir?",
+options:[
+"Continuar",
+"Descansar",
+"Tomar café"
+],
+answer:1,
+explanation:"La fatiga reduce reflejos."
 },
 
 {
@@ -446,167 +505,8 @@ options:[
 "Usar luces altas",
 "Apagar luces"
 ],
-answer:0
-},
-
-{
-question:"¿Qué significa prioridad de paso?",
-options:[
-"Derecho preferente de circulación",
-"Mayor velocidad",
-"Mayor tamaño"
-],
-answer:0
-},
-
-{
-question:"¿Qué debe hacer en una esquina sin señalización?",
-options:[
-"Prioridad quien viene por derecha",
-"Prioridad quien toca bocina",
-"Prioridad quien acelera"
-],
-answer:0
-},
-
-{
-question:"¿Qué hacer si un vehículo lo sobrepasa?",
-options:[
-"Aumentar velocidad",
-"Mantener velocidad",
-"Encerrarlo"
-],
-answer:1
-},
-
-{
-question:"¿Cuál es la función de las balizas?",
-options:[
-"Advertir peligro",
-"Iluminar más",
-"Frenar"
-],
-answer:0
-},
-
-{
-question:"¿Qué hacer ante hidroplaneo?",
-options:[
-"Frenar fuerte",
-"Soltar acelerador suavemente",
-"Girar brusco"
-],
-answer:1
-},
-
-{
-question:"¿Qué indica un cordón pintado de amarillo?",
-options:[
-"Prohibido estacionar",
-"Parada libre",
-"Carga de combustible"
-],
-answer:0
-},
-
-{
-question:"¿Qué debe hacer al estacionar en subida?",
-options:[
-"Girar ruedas hacia cordón",
-"Dejar neutro",
-"Apagar luces solamente"
-],
-answer:0
-},
-
-{
-question:"¿Qué significa manejo defensivo?",
-options:[
-"Anticiparse a riesgos",
-"Conducir rápido",
-"Usar bocina"
-],
-answer:0
-},
-
-{
-question:"¿Qué hacer ante un accidente?",
-options:[
-"Seguir viaje",
-"Auxiliar y llamar emergencias",
-"Retirar vehículos"
-],
-answer:1
-},
-
-{
-question:"¿Qué debe hacer antes de cambiar de carril?",
-options:[
-"Señalizar",
-"Acelerar",
-"Frenar"
-],
-answer:0
-},
-
-{
-question:"¿Qué hacer si el semáforo está apagado?",
-options:[
-"Considerarlo cruce peligroso",
-"Acelerar",
-"Ignorarlo"
-],
-answer:0
-},
-
-{
-question:"¿Qué significa una señal circular roja?",
-options:[
-"Prohibición",
-"Obligación",
-"Información"
-],
-answer:0
-},
-
-{
-question:"¿Qué debe hacer un motociclista?",
-options:[
-"Usar casco homologado",
-"Conducir sin luces",
-"No usar espejos"
-],
-answer:0
-},
-
-{
-question:"¿Qué hacer antes de abrir la puerta del vehículo?",
-options:[
-"Mirar espejos",
-"Abrir rápido",
-"Tocar bocina"
-],
-answer:0
-},
-
-{
-question:"¿Qué hacer al conducir de noche?",
-options:[
-"Reducir velocidad",
-"Aumentar velocidad",
-"Apagar luces"
-],
-answer:0
-},
-
-{
-question:"¿Qué hacer al aproximarse a una escuela?",
-options:[
-"Reducir velocidad",
-"Tocar bocina",
-"Acelerar"
-],
-answer:0
+answer:0,
+explanation:"Las luces altas empeoran la visibilidad."
 }
 
 ];
