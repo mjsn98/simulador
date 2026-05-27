@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Simulador Examen Licencia de Conducir Argentina</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family: Arial, Helvetica, sans-serif;
+    background:#eef2f7;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:20px;
+}
+
+.header{
+    background:linear-gradient(135deg,#1565c0,#1976d2);
+    color:white;
+    padding:25px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 4px 10px rgba(0,0,0,0.2);
+}
+
+.info{
+    display:flex;
+    gap:15px;
+    margin-top:20px;
+    flex-wrap:wrap;
+}
+
+.card{
+    flex:1;
+    background:white;
+    border-radius:12px;
+    padding:15px;
+    text-align:center;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+
+.progress{
+    margin-top:20px;
+    width:100%;
+    height:22px;
+    background:#ddd;
+    border-radius:30px;
+    overflow:hidden;
+}
+
+.progress-bar{
+    height:100%;
+    width:0%;
+    background:#43a047;
+    transition:0.3s;
+}
+
+.exam-box{
+    background:white;
+    margin-top:25px;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
+
+.question{
+    font-size:24px;
+    margin-bottom:25px;
+    color:#222;
+}
+
+.option{
+    background:#f7f7f7;
+    border:2px solid transparent;
+    padding:16px;
+    margin-bottom:15px;
+    border-radius:12px;
+    cursor:pointer;
+    transition:0.2s;
+    font-size:17px;
+}
+
+.option:hover{
+    background:#e3f2fd;
+}
+
+.correct{
+    background:#c8e6c9 !important;
+    border-color:#2e7d32;
+}
+
+.incorrect{
+    background:#ffcdd2 !important;
+    border-color:#c62828;
+}
+
+button{
+    padding:15px 25px;
+    background:#1976d2;
+    color:white;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:17px;
+    margin-top:20px;
+}
+
+button:hover{
+    background:#125ea7;
+}
+
+.result{
+    display:none;
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    margin-top:25px;
+    text-align:center;
+}
+
+.aprobado{
+    color:green;
+    font-size:34px;
+    font-weight:bold;
+}
+
+.desaprobado{
+    color:red;
+    font-size:34px;
+    font-weight:bold;
+}
+
+@media(max-width:700px){
+
+    .info{
+        flex-direction:column;
+    }
+
+    .question{
+        font-size:20px;
+    }
+
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>Simulador Examen Teórico</h1>
+        <h2>Licencia Nacional de Conducir - Argentina</h2>
+    </div>
+
+    <div class="info">
+
+        <div class="card">
+            <h3>Puntaje</h3>
+            <p id="score">0</p>
+        </div>
+
+        <div class="card">
+            <h3>Pregunta</h3>
+            <p id="question-number">1/40</p>
+        </div>
+
+        <div class="card">
+            <h3>Tiempo</h3>
+            <p id="timer">30:00</p>
+        </div>
+
+    </div>
+
+    <div class="progress">
+        <div class="progress-bar" id="progress-bar"></div>
+    </div>
+
+    <div class="exam-box">
+
+        <div class="question" id="question"></div>
+
+        <div id="options"></div>
+
+        <button id="nextBtn" disabled>Siguiente</button>
+
+    </div>
+
+    <div class="result" id="result">
+
+        <h2>Resultado Final</h2>
+
+        <h1 id="final-score"></h1>
+
+        <div id="final-message"></div>
+
+        <p id="extra"></p>
+
+        <button onclick="location.reload()">Volver a Intentar</button>
+
+    </div>
+
+</div>
+
+<script>
+
+const questions = [
+
+{
+question:"¿Qué debe hacer un conductor al aproximarse a una senda peatonal?",
+options:[
+"Disminuir la velocidad y ceder el paso",
+"Acelerar para pasar primero",
+"Tocar bocina para advertir"
+],
+answer:0
+},
+
+{
+question:"¿Cuál es la velocidad máxima permitida en calles urbanas?",
+options:["40 km/h","60 km/h","80 km/h"],
+answer:0
+},
+
+{
+question:"¿Qué indica una doble línea amarilla continua?",
+options:[
+"Se puede adelantar",
+"Está prohibido adelantar",
+"Carril exclusivo"
+],
+answer:1
+},
+
+{
+question:"¿Qué debe hacer si el semáforo cambia a amarillo?",
+options:[
+"Acelerar",
+"Detenerse si puede hacerlo con seguridad",
+"Ignorarlo"
+],
+answer:1
+},
+
+{
+question:"¿Quién tiene prioridad en una rotonda?",
+options:[
+"El que ingresa",
+"El que circula dentro",
+"El vehículo más grande"
+],
+answer:1
+},
+
+{
+question:"¿Está permitido usar el celular mientras conduce?",
+options:[
+"Sí, con una mano",
+"No",
+"Solo en avenidas"
+],
+answer:1
+},
+
+{
+question:"¿Qué luces son obligatorias en rutas nacionales?",
+options:[
+"Luces bajas",
+"Luces altas",
+"Balizas"
+],
+answer:0
+},
+
+{
+question:"¿Cuál es el límite de alcohol permitido para particulares?",
+options:[
+"0,5 g/l",
+"1 g/l",
+"2 g/l"
+],
+answer:0
+},
+
+{
+question:"¿Qué documento es obligatorio portar?",
+options:[
+"Licencia de conducir",
+"Factura del seguro",
+"Recibo de sueldo"
+],
+answer:0
+},
+
+{
+question:"¿Qué significa una señal octogonal roja?",
+options:[
+"Ceda el paso",
+"Pare",
+"Prohibido estacionar"
+],
+answer:1
+},
+
+{
+question:"¿Qué debe hacer al escuchar una sirena de emergencia?",
+options:[
+"Acelerar",
+"Ceder el paso",
+"Detenerse en medio"
+],
+answer:1
+},
+
+{
+question:"¿Cuál es la distancia mínima recomendada entre vehículos?",
+options:[
+"La que permita frenar con seguridad",
+"1 metro",
+"No importa"
+],
+answer:0
+},
+
+{
+question:"¿Qué indica una línea blanca discontinua?",
+options:[
+"Prohibido adelantar",
+"Se puede cambiar de carril",
+"Zona escolar"
+],
+answer:1
+},
+
+{
+question:"¿Qué hacer ante lluvia intensa?",
+options:[
+"Aumentar velocidad",
+"Reducir velocidad",
+"Apagar luces"
+],
+answer:1
+},
+
+{
+question:"¿Quién debe usar cinturón?",
+options:[
+"Solo conductor",
+"Todos los ocupantes",
+"Solo acompañante"
+],
+answer:1
+},
+
+{
+question:"¿Qué hacer ante fatiga al conducir?",
+options:[
+"Continuar",
+"Descansar",
+"Tomar café solamente"
+],
+answer:1
+},
+
+{
+question:"¿Qué significa una luz verde?",
+options:[
+"Avanzar con precaución",
+"Detenerse",
+"Girar obligatorio"
+],
+answer:0
+},
+
+{
+question:"¿Qué hacer si un peatón cruza fuera de senda?",
+options:[
+"No frenar",
+"Ceder igualmente",
+"Tocar bocina"
+],
+answer:1
+},
+
+{
+question:"¿Qué debe verificarse antes de salir?",
+options:[
+"Luces y frenos",
+"Solo combustible",
+"Radio"
+],
+answer:0
+},
+
+{
+question:"¿Qué hacer en un paso a nivel sin barrera?",
+options:[
+"Cruzar rápido",
+"Detenerse y observar",
+"Tocar bocina"
+],
+answer:1
+},
+
+{
+question:"¿Qué indica una señal triangular?",
+options:[
+"Peligro o advertencia",
+"Obligación",
+"Información turística"
+],
+answer:0
+},
+
+{
+question:"¿Está permitido adelantarse en curvas?",
+options:[
+"Sí",
+"No",
+"Solo motos"
+],
+answer:1
+},
+
+{
+question:"¿Qué debe hacer si pincha un neumático?",
+options:[
+"Frenar bruscamente",
+"Sostener firme el volante y reducir velocidad",
+"Girar violentamente"
+],
+answer:1
+},
+
+{
+question:"¿Qué hacer ante niebla?",
+options:[
+"Usar luces bajas",
+"Usar luces altas",
+"Apagar luces"
+],
+answer:0
+},
+
+{
+question:"¿Qué significa prioridad de paso?",
+options:[
+"Derecho preferente de circulación",
+"Mayor velocidad",
+"Mayor tamaño"
+],
+answer:0
+},
+
+{
+question:"¿Qué debe hacer en una esquina sin señalización?",
+options:[
+"Prioridad quien viene por derecha",
+"Prioridad quien toca bocina",
+"Prioridad quien acelera"
+],
+answer:0
+},
+
+{
+question:"¿Qué hacer si un vehículo lo sobrepasa?",
+options:[
+"Aumentar velocidad",
+"Mantener velocidad",
+"Encerrarlo"
+],
+answer:1
+},
+
+{
+question:"¿Cuál es la función de las balizas?",
+options:[
+"Advertir peligro",
+"Iluminar más",
+"Frenar"
+],
+answer:0
+},
+
+{
+question:"¿Qué hacer ante hidroplaneo?",
+options:[
+"Frenar fuerte",
+"Soltar acelerador suavemente",
+"Girar brusco"
+],
+answer:1
+},
+
+{
+question:"¿Qué indica un cordón pintado de amarillo?",
+options:[
+"Prohibido estacionar",
+"Parada libre",
+"Carga de combustible"
+],
+answer:0
+},
+
+{
+question:"¿Qué debe hacer al estacionar en subida?",
+options:[
+"Girar ruedas hacia cordón",
+"Dejar neutro",
+"Apagar luces solamente"
+],
+answer:0
+},
+
+{
+question:"¿Qué significa manejo defensivo?",
+options:[
+"Anticiparse a riesgos",
+"Conducir rápido",
+"Usar bocina"
+],
+answer:0
+},
+
+{
+question:"¿Qué hacer ante un accidente?",
+options:[
+"Seguir viaje",
+"Auxiliar y llamar emergencias",
+"Retirar vehículos"
+],
+answer:1
+},
+
+{
+question:"¿Qué debe hacer antes de cambiar de carril?",
+options:[
+"Señalizar",
+"Acelerar",
+"Frenar"
+],
+answer:0
+},
+
+{
+question:"¿Qué hacer si el semáforo está apagado?",
+options:[
+"Considerarlo cruce peligroso",
+"Acelerar",
+"Ignorarlo"
+],
+answer:0
+},
+
+{
+question:"¿Qué significa una señal circular roja?",
+options:[
+"Prohibición",
+"Obligación",
+"Información"
+],
+answer:0
+},
+
+{
+question:"¿Qué debe hacer un motociclista?",
+options:[
+"Usar casco homologado",
+"Conducir sin luces",
+"No usar espejos"
+],
+answer:0
+},
+
+{
+question:"¿Qué hacer antes de abrir la puerta del vehículo?",
+options:[
+"Mirar espejos",
+"Abrir rápido",
+"Tocar bocina"
+],
+answer:0
+},
+
+{
+question:"¿Qué hacer al conducir de noche?",
+options:[
+"Reducir velocidad",
+"Aumentar velocidad",
+"Apagar luces"
+],
+answer:0
+},
+
+{
+question:"¿Qué hacer al aproximarse a una escuela?",
+options:[
+"Reducir velocidad",
+"Tocar bocina",
+"Acelerar"
+],
+answer:0
+}
+
+];
+
+let currentQuestion = 0;
+let score = 0;
+let answered = false;
+
+const questionEl = document.getElementById("question");
+const optionsEl = document.getElementById("options");
+const scoreEl = document.getElementById("score");
+const questionNumberEl = document.getElementById("question-number");
+const progressBar = document.getElementById("progress-bar");
+const nextBtn = document.getElementById("nextBtn");
+
+function loadQuestion(){
+
+    answered = false;
+    nextBtn.disabled = true;
+
+    const q = questions[currentQuestion];
+
+    questionEl.innerText = q.question;
+
+    optionsEl.innerHTML = "";
+
+    questionNumberEl.innerText =
+        `${currentQuestion+1}/40`;
+
+    progressBar.style.width =
+        `${(currentQuestion/questions.length)*100}%`;
+
+    q.options.forEach((option,index)=>{
+
+        const div = document.createElement("div");
+
+        div.classList.add("option");
+
+        div.innerText = option;
+
+        div.onclick = ()=>checkAnswer(index,div);
+
+        optionsEl.appendChild(div);
+
+    });
+
+}
+
+function checkAnswer(index,element){
+
+    if(answered) return;
+
+    answered = true;
+
+    const correct = questions[currentQuestion].answer;
+
+    const allOptions =
+        document.querySelectorAll(".option");
+
+    allOptions.forEach((opt,i)=>{
+
+        if(i === correct){
+            opt.classList.add("correct");
+        }
+
+        if(i === index && i !== correct){
+            opt.classList.add("incorrect");
+        }
+
+    });
+
+    if(index === correct){
+
+        score++;
+
+        scoreEl.innerText = score;
+
+    }
+
+    nextBtn.disabled = false;
+
+}
+
+nextBtn.addEventListener("click",()=>{
+
+    currentQuestion++;
+
+    if(currentQuestion < questions.length){
+
+        loadQuestion();
+
+    }else{
+
+        finishExam();
+
+    }
+
+});
+
+function finishExam(){
+
+    document.querySelector(".exam-box").style.display =
+        "none";
+
+    progressBar.style.width = "100%";
+
+    document.getElementById("result").style.display =
+        "block";
+
+    document.getElementById("final-score").innerText =
+        `${score} / 40`;
+
+    let porcentaje = (score/40)*100;
+
+    if(porcentaje >= 70){
+
+        document.getElementById("final-message").innerHTML =
+            `<div class="aprobado">APROBADO</div>`;
+
+        document.getElementById("extra").innerText =
+            "Excelente. Estás preparado para el examen.";
+
+    }else{
+
+        document.getElementById("final-message").innerHTML =
+            `<div class="desaprobado">DESAPROBADO</div>`;
+
+        document.getElementById("extra").innerText =
+            "Debes repasar normas de tránsito y seguridad vial.";
+
+    }
+
+}
+
+let totalSeconds = 1800;
+
+function updateTimer(){
+
+    let minutes =
+        Math.floor(totalSeconds / 60);
+
+    let seconds =
+        totalSeconds % 60;
+
+    if(seconds < 10){
+        seconds = "0"+seconds;
+    }
+
+    document.getElementById("timer").innerText =
+        `${minutes}:${seconds}`;
+
+    if(totalSeconds <= 0){
+
+        finishExam();
+
+    }else{
+
+        totalSeconds--;
+
+    }
+
+}
+
+setInterval(updateTimer,1000);
+
+loadQuestion();
+
+</script>
+
+</body>
+</html>
